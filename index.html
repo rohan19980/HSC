@@ -1,0 +1,235 @@
+<html>
+
+<head>
+    <!--    CSS     -->
+    <link rel="stylesheet" href="./css/styleProject.css" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--     JS     -->
+    <script src="./js/p5.min.js"></script>
+    <script src="./js/road.js"></script>
+    <script src="./js/car.js"></script>
+    <script src="./js/trafficLight.js"></script>
+    <script src="./js/fuzzyLogic.js"></script>
+    <script src="./js/main.js"></script>
+</head>
+
+
+
+<body>
+    <audio id="audio" controls style="display:none">
+        <source src="./honk honk.mp3" type="audio/mpeg"> our browser does not support the audio element.
+    </audio>
+    <div class="header">
+        <h2>Fuzzy Tram Line: Moderate Break of trams in different Traffic signals</h2>
+    </div>
+    <section class="white-bg" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3 class="title-small">
+                        <span>Rules</span>
+                    </h3>
+                    <p class="content-detail">
+                        <h3>1.</h3>
+                        If car is Close to the Traffic Light OR Traffic Light is Red, then Slow Down.
+                        <h3>2.</h3>
+                        If car is neither far or close to Traffic Light OR Traffic Light is Green, then Keep
+                        Middle Speed.
+                        <h3>3.</h3>
+                        If car is Far from the Traffic Light OR Traffic Light is Orange, then Speed Up.
+                    </p>
+                </div>
+                <div class="col-md-9 content-right">
+                    <div class="row">
+                        <ul class="listing-item">
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        Rule 1
+                                    </h3>
+                                    <p class="head-sm">
+                                        if car is Close
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/distance_close.jpg" alt="close gaussmf plot">
+                                        <input type="text" id="case1Distance" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        ->
+                                    </h3>
+                                    <p class="head-sm">
+                                        or TL is red
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/color_red.jpg" alt="red trimf plot">
+                                        <input type="text" id="case1Light" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        v
+                                    </h3>
+                                    <p class="head-sm">
+                                        slow down
+                                    </p>
+                                    <p class="text-grey">
+                                        Move with 0% of your standard speed.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="listing-item">
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="icon-use">
+                                        Rule 2
+                                    </p>
+                                    <p class="head-sm">
+                                        if car is Middle
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/distance_middle.jpg" alt="middle gaussmf plot">
+                                        <input type="text" id="case2Distance" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        ->
+                                    </h3>
+                                    <p class="head-sm">
+                                        or TL is green
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/color_green.jpg" alt="green trimf plot">
+                                        <input type="text" id="case2Light" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        +
+                                    </h3>
+                                    <p class="head-sm">
+                                        keep middle speed
+                                    </p>
+                                    <p class="text-grey">
+                                        Move with 50% of your standard speed.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="listing-item">
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="icon-use">
+                                        Rule 3
+                                    </p>
+                                    <p class="head-sm">
+                                        if car is Far
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/distance_far.jpg" alt="far gaussmf plot">
+                                        <input type="text" id="case3Distance" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        ->
+                                    </h3>
+                                    <p class="head-sm">
+                                        or TL is orange
+                                    </p>
+                                    <p class="text-grey">
+                                        <img src="./plots/color_orange.jpg" alt="orange trimf plot">
+                                        <input type="text" id="case3Light" value="Some text...">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        +
+                                    </h3>
+                                    <p class="head-sm">
+                                        speed up
+                                    </p>
+                                    <p class="text-grey">
+                                        Move with 100% of your standard speed.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul class="listing-item">
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <p class="icon-use">
+                                        ^
+                                    </p>
+                                    <p class="head-sm">
+                                        Distance
+                                    </p>
+                                    <p class="text-grey">
+                                        <input type="text" id="distanceShow" value="">
+                                        <input type="text" id="carDistance" value="">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        ^
+                                    </h3>
+                                    <p class="head-sm">
+                                        color
+                                    </p>
+                                    <p class="text-grey">
+                                        <input type="text" id="colorShow" value="">
+                                        <input type="text" id="tlTick" value="">
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="col-md-4 col-sm-4">
+                                    <h3 class="icon-use">
+                                        =
+                                    </h3>
+                                    <p class="head-sm">
+                                        percentage of speed
+                                    </p>
+                                    <p class="text-grey">
+                                        <input type="text" id="totalPercentage" value="">
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
